@@ -40,35 +40,42 @@
     return _name;
 }
 
+- (float)amountFor:(Rental *)each{
+    float thisAmount = 0.0f;
+    switch (each.getMovie.getPriceCode) {
+        case MoviePriceCodeChildrens:
+        {
+            thisAmount += 2;
+            if (each.getDaysRented > 2) {
+                thisAmount += (each.getDaysRented - 2) * 1.5;
+            }
+        }
+            break;
+        case MoviePriceCodeRegular:{
+            thisAmount += each.getDaysRented * 3;
+        }
+            break;
+        case MoviePriceCodeNewRelease:{
+            thisAmount += 1.5;
+            if (each.getDaysRented > 3) {
+                thisAmount += (each.getDaysRented - 3) * 1.5;
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    return thisAmount;
+}
+
 - (NSString *)statement{
     float totalAmount = 0;
     int frequentRenterPoints = 0;
     NSString *result = [NSString stringWithFormat:@"Renter Record For %@ \n", _name];
     for (Rental *each in _rentals) {
         float thisAmount = 0;
-        switch (each.getMovie.getPriceCode) {
-            case MoviePriceCodeChildrens:
-            {
-                thisAmount += 2;
-                if (each.getDaysRented > 2) {
-                    thisAmount += (each.getDaysRented - 2) * 1.5;
-                }
-            }
-                break;
-            case MoviePriceCodeRegular:{
-                thisAmount += each.getDaysRented * 3;
-            }
-                break;
-            case MoviePriceCodeNewRelease:{
-                thisAmount += 1.5;
-                if (each.getDaysRented > 3) {
-                    thisAmount += (each.getDaysRented - 3) * 1.5;
-                }
-            }
-                break;
-            default:
-                break;
-        }
+        
+        thisAmount = [self amountFor:each];
         
         frequentRenterPoints ++;
         if (each.getMovie.getPriceCode == MoviePriceCodeChildrens && each.getDaysRented > 1) {
