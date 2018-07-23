@@ -40,32 +40,32 @@
     return _name;
 }
 
-- (float)amountFor:(Rental *)each{
-    float thisAmount = 0.0f;
-    switch (each.getMovie.getPriceCode) {
+- (float)amountFor:(Rental *)aRental{
+    float result = 0.0f;
+    switch (aRental.getMovie.getPriceCode) {
         case MoviePriceCodeChildrens:
         {
-            thisAmount += 2;
-            if (each.getDaysRented > 2) {
-                thisAmount += (each.getDaysRented - 2) * 1.5;
+            result += 2;
+            if (aRental.getDaysRented > 2) {
+                result += (aRental.getDaysRented - 2) * 1.5;
             }
         }
             break;
         case MoviePriceCodeRegular:{
-            thisAmount += each.getDaysRented * 3;
+            result += aRental.getDaysRented * 3;
         }
             break;
         case MoviePriceCodeNewRelease:{
-            thisAmount += 1.5;
-            if (each.getDaysRented > 3) {
-                thisAmount += (each.getDaysRented - 3) * 1.5;
+            result += 1.5;
+            if (aRental.getDaysRented > 3) {
+                result += (aRental.getDaysRented - 3) * 1.5;
             }
         }
             break;
         default:
             break;
     }
-    return thisAmount;
+    return result;
 }
 
 - (NSString *)statement{
