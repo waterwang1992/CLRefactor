@@ -40,19 +40,29 @@
     return _name;
 }
 
+- (float)getTotalCharge{
+    float result = 0.0f;
+    for (Rental *each in _rentals) {
+        result += each.getCharge;
+    }
+    return result;
+}
+
+- (NSInteger)getTotalfrequentRenterPoints{
+    float result = 0.0f;
+    for (Rental *each in _rentals) {
+        result += each.getFrequentRenterPoints;
+    }
+    return result;
+}
+
 - (NSString *)statement{
-    float totalAmount = 0;
-    int frequentRenterPoints = 0;
     NSString *result = [NSString stringWithFormat:@"Renter Record For %@ \n", _name];
     for (Rental *each in _rentals) {
-        frequentRenterPoints += each.getFrequentRenterPoints;
-        totalAmount += each.getCharge;
         result = [result stringByAppendingFormat:@"\t%@\t%.2f\n", each.getMovie.getTitle, each.getCharge];
     }
-    
-    result = [result stringByAppendingFormat:@"Amount own is %.2f \n", totalAmount];
-    result = [result stringByAppendingFormat:@"You earned %d frequent renter points", frequentRenterPoints];
-    
+    result = [result stringByAppendingFormat:@"Amount own is %.2f \n", [self getTotalCharge]];
+    result = [result stringByAppendingFormat:@"You earned %ld frequent renter points", [self getTotalfrequentRenterPoints]];
     return result;
 }
 
