@@ -16,4 +16,6 @@
 - (NSInteger)getDaysRented;
 
 - (Movie *)getMovie;
+
+- (float)getCharge;
 @end

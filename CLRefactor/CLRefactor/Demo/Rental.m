@@ -33,4 +33,32 @@
 - (Movie *)getMovie{
     return _movie;
 }
+
+- (float)getCharge{
+    float result = 0.0f;
+    switch (self.getMovie.getPriceCode) {
+            case MoviePriceCodeChildrens:
+        {
+            result += 2;
+            if (self.getDaysRented > 2) {
+                result += (self.getDaysRented - 2) * 1.5;
+            }
+        }
+            break;
+            case MoviePriceCodeRegular:{
+                result += self.getDaysRented * 3;
+            }
+            break;
+            case MoviePriceCodeNewRelease:{
+                result += 1.5;
+                if (self.getDaysRented > 3) {
+                    result += (self.getDaysRented - 3) * 1.5;
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    return result;
+}
 @end
