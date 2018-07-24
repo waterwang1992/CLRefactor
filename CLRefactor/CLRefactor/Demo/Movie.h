@@ -24,4 +24,8 @@ typedef NS_ENUM(NSInteger, MoviePriceCode) {
 
 - (NSString *)getTitle;
 
+- (float)getCharge:(NSInteger)daysRented;
+
+- (NSInteger)getFrenquentRenterPoints:(NSInteger)daysRented;
+
 @end
