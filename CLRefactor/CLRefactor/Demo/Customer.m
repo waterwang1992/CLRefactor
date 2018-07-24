@@ -45,10 +45,7 @@
     int frequentRenterPoints = 0;
     NSString *result = [NSString stringWithFormat:@"Renter Record For %@ \n", _name];
     for (Rental *each in _rentals) {
-        frequentRenterPoints ++;
-        if (each.getMovie.getPriceCode == MoviePriceCodeChildrens && each.getDaysRented > 1) {
-            frequentRenterPoints ++;
-        }
+        frequentRenterPoints += each.getFrequentRenterPoints;
         totalAmount += each.getCharge;
         result = [result stringByAppendingFormat:@"\t%@\t%.2f\n", each.getMovie.getTitle, each.getCharge];
     }

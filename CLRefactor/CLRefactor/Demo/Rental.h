@@ -18,4 +18,6 @@
 - (Movie *)getMovie;
 
 - (float)getCharge;
+
+- (NSInteger)getFrequentRenterPoints;
 @end

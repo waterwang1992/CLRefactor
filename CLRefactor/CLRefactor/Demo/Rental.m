@@ -61,4 +61,12 @@
     }
     return result;
 }
+
+- (NSInteger)getFrequentRenterPoints{
+    if (self.getMovie.getPriceCode == MoviePriceCodeChildrens && self.getDaysRented > 1) {
+        return 2;
+    }else{
+        return 1;
+    }
+}
 @end
