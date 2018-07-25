@@ -10,4 +10,5 @@
 #import "DemoConstant.h"
 @interface Price : NSObject
 - (MoviePriceCode)getPriceCode;
+- (float)getCharge:(NSInteger)daysRented;
 @end
