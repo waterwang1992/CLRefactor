@@ -20,4 +20,8 @@
     abort();
     return 0;
 }
+
+- (NSInteger)getFrenquentRenterPoints:(NSInteger)daysRented{
+    return 1;
+}
 @end

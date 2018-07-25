@@ -11,4 +11,5 @@
 @interface Price : NSObject
 - (MoviePriceCode)getPriceCode;
 - (float)getCharge:(NSInteger)daysRented;
+- (NSInteger)getFrenquentRenterPoints:(NSInteger)daysRented;
 @end

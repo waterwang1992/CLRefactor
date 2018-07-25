@@ -20,4 +20,8 @@
     }
     return result;
 }
+
+- (NSInteger)getFrenquentRenterPoints:(NSInteger)daysRented{
+    return daysRented > 1 ? 2 : 1;
+}
 @end

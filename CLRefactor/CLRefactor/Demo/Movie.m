@@ -61,10 +61,6 @@
 }
 
 - (NSInteger)getFrenquentRenterPoints:(NSInteger)daysRented{
-    if (self.getPriceCode == MoviePriceCodeChildrens && daysRented > 1) {
-        return 2;
-    }else{
-        return 1;
-    }
+    return [_price getFrenquentRenterPoints:daysRented];
 }
 @end
