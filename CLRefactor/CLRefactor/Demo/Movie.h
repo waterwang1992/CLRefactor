@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSInteger, MoviePriceCode) {
-    MoviePriceCodeChildrens = 2,
-    MoviePriceCodeRegular = 0,
-    MoviePriceCodeNewRelease = 1
-};
+#import "DemoConstant.h"
 
 @interface Movie : NSObject
 

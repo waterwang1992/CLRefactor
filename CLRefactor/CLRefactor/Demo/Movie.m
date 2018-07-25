@@ -7,11 +7,14 @@
 //
 
 #import "Movie.h"
+#import "ChildrensPrice.h"
+#import "NewReleasePrice.h"
+#import "RegularPrice.h"
 
 @interface Movie ()
 
 @property (copy, nonatomic) NSString *title;
-@property (assign, nonatomic) MoviePriceCode priceCode;
+@property (strong, nonatomic) Price *price;
 
 @end
 
@@ -22,17 +25,31 @@
     self = [super init];
     if (self) {
         _title = title;
-        _priceCode = priceCode;
+        [self setUpPriceCode:priceCode];
     }
     return self;
 }
 
 - (MoviePriceCode)getPriceCode{
-    return _priceCode;
+    return _price.getPriceCode;
 }
 
 - (void)setUpPriceCode:(MoviePriceCode)priceCode{
-    _priceCode = priceCode;
+    switch (priceCode) {
+        case MoviePriceCodeRegular:
+            _price = [[RegularPrice alloc] init];
+            break;
+        case MoviePriceCodeChildrens:
+            _price = [[ChildrensPrice alloc] init];
+            break;
+        case MoviePriceCodeNewRelease:
+            _price = [[NewReleasePrice alloc] init];
+            break;
+        default:
+            NSLog(@"unspport price code ");
+            abort();
+            break;
+    }
 }
 
 - (NSString *)getTitle{
