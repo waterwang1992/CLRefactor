@@ -12,4 +12,8 @@
 - (MoviePriceCode)getPriceCode{
     return MoviePriceCodeRegular;
 }
+
+- (float)getCharge:(NSInteger)daysRented{
+      return daysRented * 3;
+}
 @end
